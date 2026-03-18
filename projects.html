@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Omyaa</title>
+    <style>
+        /* --- CSS STYLES --- */
+        :root {
+            --bg: #050505;
+            --text: #ffffff;
+            --accent: #007aff;
+            --secondary: rgba(255, 255, 255, 0.4);
+            --card-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            padding: 80px 10%;
+            line-height: 1.5;
+        }
+
+        /* Back Navigation */
+        .back-btn {
+            position: fixed;
+            top: 40px;
+            left: 40px;
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            z-index: 100;
+        }
+
+        .back-btn:hover {
+            color: var(--accent);
+        }
+
+        header {
+            margin-bottom: 60px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            letter-spacing: -2px;
+            font-weight: 700;
+        }
+
+        /* Projects Container */
+        .projects-list {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            max-width: 800px;
+        }
+
+        /* Project Card */
+        .card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--card-border);
+            padding: 40px;
+            border-radius: 16px;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            cursor: default;
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+            background: rgba(0, 122, 255, 0.03);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+        }
+
+        .card p {
+            color: var(--secondary);
+            font-size: 1.1rem;
+            max-width: 90%;
+        }
+
+        /* Animated Entrance */
+        .card {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s forwards;
+        }
+
+        .card:nth-child(1) { animation-delay: 0.1s; }
+        .card:nth-child(2) { animation-delay: 0.2s; }
+        .card:nth-child(3) { animation-delay: 0.3s; }
+        .card:nth-child(4) { animation-delay: 0.4s; }
+        .card:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Subtle Noise Overlay */
+        .noise {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="noise"></div>
+    <a href="index.html" class="back-btn">← Back</a>
+
+    <header>
+        <h1>Selected Projects</h1>
+    </header>
+
+    <main class="projects-list">
+        
+        <a href="projects/riscV.html" style="text-decoration: none; color: inherit;">
+            <div class="card">
+                <div class="project-header">
+                    <h3>RISC-V Single-Cycle Processor</h3>
+                    <span class="tag">Computer Architecture</span>
+                </div>
+                <p>A full implementation of the RISC-V Instruction Set Architecture using Digital Logic Design principles. Optimized for instruction execution efficiency.</p>
+            </div>
+        </a>
+
+        <a href="projects/CineMatch.html" style="text-decoration: none; color: inherit;">
+            <div class="card">
+                <div class="project-header">
+                    <h3>CineMatch: Hybrid Recommendation System</h3>
+                    <span class="tag">Machine Learning</span>
+                </div>
+                <p>A "Tinder for Movies" engine leveraging KNN to provide real-time recommendations based on swipe feedback. Achieved an NDCG of 0.91 by combining content-based features with contextual mood and seasonal signals.</p>
+            </div>
+        </a>
+        <div class="card">
+            <h3>Kiki's Connect</h3>
+            <p>A full-stack social platform designed for real-time interaction and efficient data management.</p>
+        </div>
+
+        <div class="card">
+            <h3>DonsHack '25: Most Impactful</h3>
+            <p>Awarded for the most impactful project at the USF hackathon, solving a critical urban challenge.</p>
+        </div>
+
+        <div class="card">
+            <h3>DonsHack '24: 1st Place</h3>
+            <p>Winner of the Beginners' Category, built with an emphasis on clean logic and modular architecture.</p>
+        </div>
+
+    </main>
+
+    <script>
+        // Optional: Adding a subtle glow effect that follows mouse inside cards
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            });
+        });
+    </script>
+</body>
+</html>

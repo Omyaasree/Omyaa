@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RISC-V 64-bit Processor | Project</title>
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --text: #e0e0e0;
+            --accent: #007aff;
+            --secondary: #888;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, BlinkMacSystemFont, "Inter", sans-serif;
+            display: flex;
+            line-height: 1.7;
+        }
+
+        /* Side Navigation */
+        nav {
+            width: 300px;
+            height: 100vh;
+            position: fixed;
+            padding: 40px;
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .back-btn {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        nav h4 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        nav a:hover { color: var(--text); }
+
+        /* Main Content */
+        main {
+            margin-left: 300px;
+            padding: 80px 10%;
+            max-width: 1200px;
+        }
+
+        header { margin-bottom: 60px; }
+        
+        h1 {
+            font-size: 3.5rem;
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin: 60px 0 20px;
+            color: var(--text);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+        }
+
+        p { margin-bottom: 20px; color: #ccc; }
+
+        .tag-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+
+        .tag {
+            padding: 4px 12px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            font-size: 0.8rem;
+            color: var(--accent);
+        }
+
+        /* Special Sections */
+        .highlight-box {
+            background: var(--glass);
+            border-left: 4px solid var(--accent);
+            padding: 30px;
+            border-radius: 8px;
+            margin: 40px 0;
+        }
+
+        .software-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .software-link:hover { opacity: 0.9; transform: translateY(-2px); }
+
+        ul { list-style: none; }
+        ul li::before {
+            content: "→";
+            color: var(--accent);
+            margin-right: 10px;
+        }
+
+        @media (max-width: 900px) {
+            nav { display: none; }
+            main { margin-left: 0; padding: 40px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="../../projects.html" class="back-btn">← Back to Projects</a>
+        <h4>Table of Contents</h4>
+        <a href="#overview">Project Overview</a>
+        <a href="#architecture">System Architecture</a>
+        <a href="#breakdown">Component Breakdown</a>
+        <a href="#instruction-set">Instruction Set</a>
+        <a href="#methodology">Methodology</a>
+        <a href="#debugging">Verification</a>
+        <a href="#skills">Key Skills</a>
+    </nav>
+
+    <main>
+        <header>
+            <div class="tag-row">
+                <span class="tag">64-Bit Architecture</span>
+                <span class="tag">Digital Logic</span>
+                <span class="tag">RISC-V</span>
+            </div>
+            <h1>Single-Cycle RISC-V Processor</h1>
+        </header>
+
+        <section id="overview">
+            <h2>Project Overview</h2>
+            <p>The objective of this project was to design and implement a functional 64-bit single-cycle RISC-V processor using the <strong>Digital</strong> simulation environment. This architecture executes every instruction within a single clock cycle, ensuring all data movements and computations are completed before the next clock tick.</p>
+            <p>The processor was built to handle a variety of computational, control flow, and memory-access instructions, transitioning from a basic manual circuit into an autonomous system capable of executing complex programs automatically.</p>
+            <a href="https://github.com/Omyaasree/Assembly-RISC-V-/tree/main/project06-Omyaasree-main" target="_blank" class="software-link">View code for the Digital processor here</a>
+
+        </section>
+
+        
+
+        <section id="architecture">
+            <h2>System Architecture</h2>
+            <p>The top-level architecture is organized around a Program Counter (PC) that holds the address of the instruction currently being executed. On every clock cycle, the PC typically increments by 4 bytes to fetch the next 32-bit machine code instruction from ROM.</p>
+        </section>
+
+        <section id="breakdown">
+            <h2>Component Breakdown</h2>
+            <p>The execution core features a <strong>64-bit Arithmetic Logic Unit (ALU)</strong> capable of addition, subtraction, multiplication, and logical shifts. Specialized logic using splitters and MUXes facilitates sub-word loading and storing, allowing the system to handle 8-bit (lb/sb) and 32-bit (lw/sw) values within the 64-bit memory framework.</p>
+            <div class="highlight-box">
+                <strong>Instruction Decoder:</strong> Utilizes a spreadsheet-based methodology to map instruction opcodes and function codes to specific control lines such as RFW (Register File Write) and ALUOp.
+            </div>
+        </section>
+
+        <section id="instruction-set">
+            <h2>Instruction Set Support</h2>
+            <ul>
+                <li><strong>R-type:</strong> Arithmetic operations like <code>add</code>, <code>sub</code>, <code>mul</code>.</li>
+                <li><strong>I-type:</strong> Immediate operations like <code>addi</code> and <code>ld</code>.</li>
+                <li><strong>Control Flow:</strong> <code>jal</code>, <code>jalr</code>, and conditional branches (<code>beq</code>, <code>bne</code>, <code>blt</code>, <code>bge</code>).</li>
+                <li><strong>Memory:</strong> <code>ld/sd</code>, <code>lw/sw</code>, and <code>lb/sb</code>.</li>
+            </ul>
+        </section>
+
+        <section id="methodology">
+            <h2>Development Methodology</h2>
+            <p>The project followed an incremental strategy: Initial focus on the basic data path (PC, ROM, RegFile), followed by the automated Instruction Decoder, and finally the complex load/store logic for 64-bit RAM interfacing.</p>
+        </section>
+
+        <section id="debugging">
+            <h2>Debugging and Verification</h2>
+            <p>Verification was conducted using a dedicated <strong>"dashboard"</strong> that exposes the internal state of all 32 registers, mapping them to their ABI names (a0, ra, sp). This allowed for single-stepping through programs to validate control lines in real-time.</p>
+        </section>
+
+        <style>
+    /* Add this to your existing <style> section */
+    .video-container {
+        margin: 50px 0;
+        background: var(--glass);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    video {
+        width: 100%;
+        max-width: 800px;
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .video-caption {
+        margin-top: 15px;
+        font-size: 0.9rem;
+        color: var(--secondary);
+        font-style: italic;
+    }
+</style>
+
+<section id="demo">
+    <h2>System in Action</h2>
+    <div class="video-container">
+        <video controls poster="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
+            <source src="riscV.mov" type="video/quicktime">
+            <source src="riscV.mov" type="video/mp4"> 
+            Your browser does not support the video tag.
+        </video>
+        <p class="video-caption">Demonstration of the 64-bit single-cycle processor executing a test suite in the Digital environment.</p>
+    </div>
+</section>
+
+        <section id="skills">
+            <h2>Key Skills Demonstrated</h2>
+            <p>This project showcases a deep proficiency in digital logic design and hardware control logic. By engineering a 64-bit data path and solving intricate memory alignment challenges, I demonstrated the technical capacity required for high-precision systems engineering.</p>
+            
+            <a href="https://github.com/hneemann/Digital.git" target="_blank" class="software-link">View Digital Software on GitHub</a>
+        </section>
+
+        <section id="future" style="margin-top: 100px; padding-top: 40px; border-top: 1px solid var(--accent);">
+            <h3>Looking Ahead</h3>
+            <p>Building upon these insights, I have developed a fully working model of a <strong>multi-stage pipelined processor</strong>, incorporating forwarding units and branch prediction logic to handle hazards.</p>
+        </section>
+
+    </main>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
